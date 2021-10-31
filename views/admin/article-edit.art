@@ -1,0 +1,92 @@
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+
+    {{include './common/header.art'}}
+    <!-- 主体内容 -->
+    <div class="content">
+        {{include './common/aside.art'}}
+        <div class="main">
+            <!-- 分类标题 -->
+            <div class="title">
+                <h4>5b9a716cb2d2bf17706bcc0a</h4>
+            </div>
+            <!-- /分类标题 -->
+            <!--
+                enctype marks the encoding type of the form.
+                To upload a file, we need to pass the data in binary form so that we use 
+            -->
+            <form class="form-container" action="/admin/article-add" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+                </div>
+                <div class="form-group">
+                    <label>作者</label>
+                    <input type="text" class="form-control" readonly name="author" value="{{@userInfo._id}}">
+                </div>
+                <div class="form-group">
+                    <label>发布时间</label>
+                    <input type="date" class="form-control" name="publishDate">
+                </div>
+                
+                <div class="form-group">
+                   <label for="exampleInputFile">文章封面</label>
+                   <input type="file" name="cover" id="file">
+                   <div class="thumbnail-waper">
+                       <img class="img-thumbnail" src="" id="preview">
+                   </div>
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea name="content" class="form-control" id="editor"></textarea>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    <!-- /主体内容 -->
+    {{/block }}
+
+    {{block 'script'}}
+
+    <script src="/admin/lib/ckeditor5/ckeditor.js"></script>
+    <script type="text/javascript">
+
+        let editor;
+
+        ClassicEditor
+                .create( document.querySelector('#editor'))
+                .then(newEditor => {
+                    editor = newEditor;
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+
+        
+        // const editorData = editor.getData();
+        
+        //select document uploarding component?
+        var file = document.querySelector('#file');
+        var preview = document.querySelector('#preview');
+
+        //after users selected files, let them preview
+        file.onchange = function () {
+            var reader = new FileReader();
+            //this.files = the list of files that the user selects
+            //read as data url is asychronus function
+            
+            reader.readAsDataURL(this.files[0]);
+            //check if reading files succeed
+            reader.onload = function () {
+                console.log(reader.result);
+                preview.src = reader.result;
+            }
+        }
+
+    </script>
+{{/block }}
