@@ -12,9 +12,11 @@ module.exports = async (req, res) => {
 
 	let start = (page-1) * pagesize;
 	let users = await User.find({}).limit(pagesize).skip(start);
+	let countUsers = Object.keys(users).length;
 	res.render('admin/user', {
 		users: users,
 		page: page,
-		totalPages: totalPages
+		totalPages: totalPages,
+		countUsers: countUsers
 	});
 }

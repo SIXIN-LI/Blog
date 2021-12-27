@@ -1,0 +1,10 @@
+{
+	"title": "Blog Management System -- development enviroment",
+	"db": {
+		"user": "Cece",
+		
+		"host": "localhost",
+		"port": "27017",
+		"name": "blog"
+	}
+}

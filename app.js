@@ -1,10 +1,13 @@
-
 const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session');
 const template = require('art-template');
-const dateformat = import('dateformat');
+const moment = require("moment");
+//morgan is a middleware under express - can print request info
+const morgan = require('morgan');
+const config = require('config');
+
 //create website server
 const app = express();
   
@@ -22,8 +25,20 @@ app.set('view engine', 'art');
 //when rendering templates with .art, I use art-template
 app.engine('art', require('express-art-template'));
 //pass dateformat to template documents
-template.defaults.imports.dateformat = dateformat;
- 
+template.defaults.imports.moment = moment;
+
+//determine using data in env variable
+console.log(config.get('title'));
+
+//access system env varibales
+if (process.env.NODE_ENV == 'development'){
+	
+	//display request info in console
+	app.use(morgan('dev'))
+} else {
+	console.log("Here is for production.")
+}
+
 //import routers 
 const home = require('./route/home');
 const admin = require('./route/admin'); 

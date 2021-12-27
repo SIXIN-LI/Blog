@@ -1,0 +1,7 @@
+{
+	"db": {
+		//need to initialize app.js under admin
+		"pwd": "APP_PASSWORD"
+		
+	}
+}

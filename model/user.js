@@ -47,6 +47,7 @@ async function createUser() {
 	});
 
 }
+
 //validate user info
 const validateUser = user => {
 	//define object validation rules
