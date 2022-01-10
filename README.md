@@ -20,4 +20,8 @@ Go to "Users" tab on the left sidebar.
 
 
 ## Application UI
+### Login Page
+<img width="960" alt="2968fdeee3a74a5a7f27e4452e5ced7" src="https://user-images.githubusercontent.com/45926850/148710541-9e878602-c6e4-4e6f-ba3a-a743a8108269.png">
 
+### Users Page
+![image](https://user-images.githubusercontent.com/45926850/148710533-4323820f-5a61-4c2a-8fa9-62a92fe00db4.png)
